@@ -24,7 +24,7 @@ spec:
       values: |-
         image:
           repository: shaposhnikoff/weather-exporter
-          tag: 94a3fe0
+          tag: e94c25f
         serviceMonitor:
           enabled: true
           labels:
