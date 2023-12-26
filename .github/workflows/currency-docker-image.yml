@@ -26,7 +26,7 @@ jobs:
       id: prep
       run: |
         TAG=$(echo $GITHUB_SHA | head -c7)
-        IMAGE="shaposhnikoff/currency-exporter"
+        IMAGE="my.docker.registry/shaposhnikoff/currency-exporter"
         echo ::set-output name=tagged_image::${IMAGE}:${TAG}
         echo ::set-output name=tag::${TAG}
 
