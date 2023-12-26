@@ -16,13 +16,13 @@ spec:
     server: 'https://kubernetes.default.svc'
   source:
     path: ''
-    repoURL: 'https://1.2.3.4/chartrepo/weather-exporter'
+    repoURL: 'https://github.com/shaposhnikoff/argo_helm_k8s_test_task/helm'
     targetRevision: 0.0.1
     chart: weather-exporter
     helm:
       values: |-
         image:
-          repository: https://1.2.3.4/chartrepo/weather-exporter
+          repository: https://hub.docker.com/shaposhnikoff/weather-exporter
           tag: 0.0.1
         serviceMonitor:
           enabled: true
