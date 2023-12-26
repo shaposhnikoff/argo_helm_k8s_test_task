@@ -24,3 +24,5 @@ if __name__ == '__main__':
         reload_currencies()
         time.sleep(60*60*4)
 
+
+
