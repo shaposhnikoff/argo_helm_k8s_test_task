@@ -21,6 +21,16 @@ jobs:
         username: ${{ secrets.DOCKER_USER }}
         password: ${{ secrets.DOCKER_PASS }}
 
+
+    - name: Prepare
+      id: prep
+      run: |
+        TAG=$(echo $GITHUB_SHA | head -c7)
+        IMAGE="shaposhnikoff/currency-exporter"
+        echo ::set-output name=tagged_image::${IMAGE}:${TAG}
+        echo ::set-output name=tag::${TAG}
+
+
     - name: Build and push
       if: always()
       id: docker_build
@@ -28,7 +38,7 @@ jobs:
       with:
         context: ./src/currency
         push: true
-        tags: shaposhnikoff/currency-exporter:$GITHUB_SHA
+        tags: ${{ steps.prep.outputs.tagged_image }}
 
     - name: Image digest
       run: echo ${{ steps.docker_build.outputs.digest }}
