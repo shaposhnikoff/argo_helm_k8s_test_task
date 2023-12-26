@@ -14,4 +14,8 @@ helm upgrade --install --kubeconfig '../kind/kind-config' --create-namespace \
 
 kubectl --kubeconfig '../kind/kind-config' -n argo-cd apply -f example_app.yml
 ```
+### Create portforward for Argo 
 
+```
+kubectl --kubeconfig="../kind/kind-config" port-forward -n argo-cd service/argo-cd-argocd-server 8888:80
+```
