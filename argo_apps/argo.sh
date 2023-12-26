@@ -1,2 +1,2 @@
-kubectl delete -f .
+#kubectl delete -f .
 kubectl apply -f .
