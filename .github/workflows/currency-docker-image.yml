@@ -57,7 +57,7 @@ jobs:
 
     - name: Update ARGO App values file with tag version
       run: | 
-         ./yq e -i '.spec.source.helm.values |= (from_yaml | .image.tag = "${{ steps.prep.outputs.tag }}" | to_yaml)' argo_apps/dev_app.yaml
+         ./yq e -i '.spec.source.helm.values |= (from_yaml | .image.tag = "${{ steps.prep.outputs.tag }}" | to_yaml)' argo_apps/dev_currency.yaml
 
 
     - name: Commit files
