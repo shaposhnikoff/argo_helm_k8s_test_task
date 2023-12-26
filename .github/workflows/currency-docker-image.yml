@@ -27,7 +27,7 @@ jobs:
       uses: docker/build-push-action@v5
       with:
         context: ./src/currency
-        push: false
+        push: true
         tags: shaposhnikoff/currency-exporter:latest
 
     - name: Image digest
