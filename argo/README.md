@@ -6,12 +6,12 @@ helm repo update
 
 kubectl --kubeconfig '../kind/kind-config' get ns
 
-helm template --kubeconfig '../kind/kind-config' -f argo-values/values_kind.yaml \
+helm template --kubeconfig '../kind/kind-config' -f argo_values.yaml \
 --namespace argo-cd argo-cd argo/argo-cd > template.argo
 
 helm upgrade --install --kubeconfig '../kind/kind-config' --create-namespace \
--f argo-values/values_kind.yaml --namespace argo-cd argo-cd argo/argo-cd
+-f argo_values.yaml --namespace argo-cd argo-cd argo/argo-cd
 
-kubectl --kubeconfig '../kind/kind-config' -n argo-cd apply -f argo-values/example_app.yml
+kubectl --kubeconfig '../kind/kind-config' -n argo-cd apply -f example_app.yml
 ```
 
