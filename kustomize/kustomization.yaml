@@ -8,4 +8,4 @@ resources:
 namespace: dev
 images:
 - name: /currency-exporter
-  newTag: c4201c772e7e306d1fba02abad2d9aa06ee35575
+  newTag: 9b09d9946cde3f24f65a61ff7ee9f939266eed22
