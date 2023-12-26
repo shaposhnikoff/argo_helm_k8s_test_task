@@ -1,13 +1,12 @@
 name: Docker Image CI
 
-
 on:
   push:
     paths:
-    - 'src/**'
+    - 'src/currency/**'
   pull_request:
     paths: 
-    - 'src/**'
+    - 'src/currency/**'
 
 jobs:
   build:
@@ -16,12 +15,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
-    - name: Build the Docker image
-      run: docker build . --file src/currency/Dockerfile --tag currency:$(date +%s)
-
-    - name: List before
-      run: ls -l
-
     - name: Build and push
       if: always()
       id: docker_build
