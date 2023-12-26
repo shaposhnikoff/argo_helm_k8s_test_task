@@ -1,0 +1,31 @@
+# for searching hooks, use this https://pre-commit.com/hooks.html
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: end-of-file-fixer
+      - id: detect-private-key
+      - id: detect-aws-credentials
+      - id: check-yaml
+      - id: pretty-format-json
+      - id: requirements-txt-fixer
+      - id: no-commit-to-branch
+        args: [--branch, staging, --branch, testing]
+      - id: check-added-large-files
+        args: ['--maxkb=100']
+
+
+  - repo: https://github.com/gruntwork-io/pre-commit
+    rev: v0.1.18
+    hooks:
+      - id: terragrunt-hclfmt
+        name: Terragrunt hclfmt
+        description: Rewrites all Terragrunt configuration files to a canonical format
+        entry: hooks/terragrunt-hclfmt.sh
+        language: script
+        files: \.hcl$
+        exclude: >
+          (?x)^(
+            .+\.terraform\/.*$|
+            .+\.terragrunt-cache\/.*$|
+          )$
