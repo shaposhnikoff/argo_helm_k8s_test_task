@@ -1,15 +1,13 @@
 name: Docker Image CI
 
+
 on:
   push:
-    branches: [ "main" ]
     paths:
-      - src/currency
+    - 'src/**'
   pull_request:
-    branches: [ "main" ]
-    paths:
-      - src/currency
-
+    paths: 
+    - 'src/**'
 
 jobs:
 
