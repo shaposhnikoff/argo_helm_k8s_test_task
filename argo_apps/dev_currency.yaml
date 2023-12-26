@@ -23,7 +23,7 @@ spec:
     helm:
       values: |-
         image:
-          repository: https://hub.docker.com/shaposhnikoff/currency-exporter
+          repository: shaposhnikoff/currency-exporter
           tag: latest
         serviceMonitor:
           enabled: true
