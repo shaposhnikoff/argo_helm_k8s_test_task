@@ -10,12 +10,26 @@ on:
     - 'src/**'
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
+    
     - name: Build the Docker image
       run: docker build . --file src/currency/Dockerfile --tag currency:$(date +%s)
+
+    - name: List before
+      run: ls -l
+
+    - name: Build and push
+      id: docker_build
+      uses: docker/build-push-action@v2
+      with:
+        context: ./dmrgateway
+        push: true
+        tags: shaposhnikoff/dmrgateway:latest
+
+    - name: Image digest
+      run: echo ${{ steps.docker_build.outputs.digest }}
+      
