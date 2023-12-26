@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: weather-exporter-dev
+  name: data-draif-prod
   namespace: argo-cd
 spec:
   project: default
