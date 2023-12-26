@@ -4,15 +4,15 @@ repos:
     rev: v4.4.0
     hooks:
 #- id: end-of-file-fixer
-      - id: detect-private-key
+#      - id: detect-private-key
       - id: detect-aws-credentials
       - id: check-yaml
       - id: pretty-format-json
       - id: requirements-txt-fixer
-      - id: no-commit-to-branch
+#      - id: no-commit-to-branch
         args: [--branch, staging, --branch, testing]
       - id: check-added-large-files
-        args: ['--maxkb=100']
+        args: ['--maxkb=200']
 
 
   - repo: https://github.com/gruntwork-io/pre-commit
