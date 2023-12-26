@@ -23,7 +23,7 @@ spec:
     helm:
       values: |-
         image:
-          repository: https://hub.docker.com/shaposhnikoff/weather-exporter
+          repository: shaposhnikoff/weather-exporter
           tag: 0.0.1
         serviceMonitor:
           enabled: true
