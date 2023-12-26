@@ -19,7 +19,7 @@ spec:
   source:
     path: helm
     repoURL: https://github.com/shaposhnikoff/argo_helm_k8s_test_task
-    targetRevision: main
+    targetRevision: 0.1.0
     chart: weather-exporter
     helm:
       values: |-
