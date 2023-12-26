@@ -1,0 +1,49 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: data-draif-dev
+  namespace: argocd
+spec:
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+  destination:
+    namespace: argocd
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: ''
+    repoURL: 'https://1.2.3.4/chartrepo/weather-exporter'
+    targetRevision: 0.0.1
+    chart: weather-exporter
+    helm:
+      values: |-
+        image:
+          repository: https://1.2.3.4/chartrepo/weather-exporter
+          tag: 0.0.1
+        serviceMonitor:
+          enabled: true
+          labels:
+            release: prometheus-operator
+        serviceAccount:
+          create: true
+          name:
+          annotations:
+            eks.amazonaws.com/role-arn: "arn:aws:iam::1234512345:role/data-dev-data-serviceaccount"
+            eks.amazonaws.com/sts-regional-endpoints: "true"
+        extraEnv:
+          - name: INTERVAL_MINUTES
+            value: "60"
+          - name: PROMETHEUS_ADDRESS
+            value: "0.0.0.0"
+          - name: PROMETHEUS_PORT
+            value: "9112"
+          - name: EMR_ROLE_ARN
+            value: "arn:aws:iam::1234512345:role/data-dev-ec2"
+          - name: DRAIF_ROLE_ARN
+            value: "arn:aws:iam::1234512345:role/data-dev-ec2"
+
+
