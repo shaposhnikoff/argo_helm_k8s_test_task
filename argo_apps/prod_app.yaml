@@ -1,8 +1,10 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: data-draif-prod
+  name: weather-exporter-prod
   namespace: argo-cd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   syncPolicy:
@@ -15,14 +17,13 @@ spec:
     namespace: argocd
     server: 'https://kubernetes.default.svc'
   source:
-    path: ''
-    repoURL: 'https://1.2.3.4/chartrepo/weather-exporter'
-    targetRevision: 0.0.1
-    chart: weather-exporter
+    repoURL: 'https://github.com/shaposhnikoff/argo_helm_k8s_test_task.git'
+    path: helm/weather-exporter
+    targetRevision: HEAD    
     helm:
       values: |-
         image:
-          repository: https://1.2.3.4/chartrepo/weather-exporter
+          repository: https://hub.docker.com/shaposhnikoff/weather-exporter
           tag: 0.0.1
         serviceMonitor:
           enabled: true
