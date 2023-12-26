@@ -22,4 +22,4 @@ if __name__ == '__main__':
         # print date and time for debug
         print(time.strftime("%Y-%m-%d %H:%M:%S"))
         reload_currencies()
-        time.sleep(60*60*4)
+        time.sleep(60*60*1)
