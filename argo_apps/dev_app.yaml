@@ -3,6 +3,8 @@ kind: Application
 metadata:
   name: weather-exporter-dev
   namespace: argo-cd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   syncPolicy:
@@ -15,9 +17,9 @@ spec:
     namespace: argocd
     server: 'https://kubernetes.default.svc'
   source:
-    path: ''
-    repoURL: 'https://github.com/shaposhnikoff/argo_helm_k8s_test_task/helm'
-    targetRevision: 0.0.1
+    path: helm
+    repoURL: https://github.com/shaposhnikoff/argo_helm_k8s_test_task
+    targetRevision: main
     chart: weather-exporter
     helm:
       values: |-
