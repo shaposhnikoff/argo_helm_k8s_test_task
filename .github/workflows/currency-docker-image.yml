@@ -43,6 +43,9 @@ jobs:
     - name: Image digest
       run: echo ${{ steps.docker_build.outputs.digest }}
 
+    - name: Image tag
+      run: echo ${{ steps.prep.outputs.tag }}
+
     - name: Setup yq
       run: | 
         wget https://github.com/mikefarah/yq/releases/download/v4.40.5/yq_linux_amd64 -O yq
