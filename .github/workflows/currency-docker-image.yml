@@ -53,7 +53,7 @@ jobs:
 
     - name: Update helm values file with tag version
       run: | 
-         ./yq -i '.image.tag = '${{ steps.prep.outputs.tag }} helm/currency-exporter/values.yaml
+         ./yq -i '.image.tag='${{ steps.prep.outputs.tag }} helm/currency-exporter/values.yaml
 
     - name: Commit files
       run: |
