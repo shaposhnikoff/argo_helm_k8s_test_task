@@ -7,7 +7,7 @@ image:
   repository: shaposhnikoff/currency-exporter
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: 525d889
+  tag: 94a3fe0
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
