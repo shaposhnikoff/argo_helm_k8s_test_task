@@ -9,3 +9,5 @@ namespace: dev
 images:
 - name: /currency-exporter
   newTag: 9b09d9946cde3f24f65a61ff7ee9f939266eed22
+- name: shaposhnikov/currency-exporter
+  newTag: ac205e239040cd259d50fe083ebf454f71e917e1
