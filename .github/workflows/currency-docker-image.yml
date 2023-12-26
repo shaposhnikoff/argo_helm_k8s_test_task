@@ -53,7 +53,7 @@ jobs:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USER }}
       run: |
        cd kustomize/
-       kustomize edit set image $DOCKER_USER/currency-exporter:$GITHUB_SHA
+       kustomize edit set image shaposhnikov/currency-exporter:$GITHUB_SHA
        cat kustomization.yaml
 
     - name: Commit files
