@@ -3,10 +3,10 @@ name: Docker Image CI
 on:
   push:
     paths:
-    - 'src/currency/**'
+    - 'src/weather/**'
   pull_request:
     paths: 
-    - 'src/currency/**'
+    - 'src/weather/**'
 
 jobs:
   build:
@@ -26,9 +26,9 @@ jobs:
       id: docker_build
       uses: docker/build-push-action@v5
       with:
-        context: ./src/currency
+        context: ./src/weather
         push: false
-        tags: shaposhnikoff/currency-exporter:latest
+        tags: shaposhnikoff/openweather-exporter:latest
 
     - name: Image digest
       run: echo ${{ steps.docker_build.outputs.digest }}
