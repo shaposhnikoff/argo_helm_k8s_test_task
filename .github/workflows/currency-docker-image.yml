@@ -32,4 +32,14 @@ jobs:
 
     - name: Image digest
       run: echo ${{ steps.docker_build.outputs.digest }}
-      
+
+
+  identity-job:
+   ./kustomize edit set image gcr.io/PROJECT_ID/IMAGE:TAG=gcr.io/$PROJECT_ID/$IDSIMAGE:$GITHUB_SHA
+   ./kustomize build . | kubectl apply -f -
+
+   api-job:
+   ...                                                                        
+   ./kustomize edit set image gcr.io/PROJECT_ID/IMAGE:TAG=gcr.io/$PROJECT_ID/$APIIMAGE:$GITHUB_SHA
+   ./kustomize build . | kubectl apply -f -
+
