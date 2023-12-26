@@ -1,0 +1,23 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - src/currency
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - src/currency
+
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file src/currency/Dockerfile --tag currency:$(date +%s)
