@@ -28,7 +28,7 @@ jobs:
       with:
         context: ./src/currency
         push: true
-        tags: shaposhnikoff/currency-exporter:latest
+        tags: shaposhnikoff/currency-exporter:$GITHUB_SHA
 
     - name: Image digest
       run: echo ${{ steps.docker_build.outputs.digest }}
@@ -42,8 +42,8 @@ jobs:
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USER }}
       run: |
-       cd kustomize/environments/dev/
-       kustomize edit set image hello-gitops=$DOCKER_USERNAME/hello-gitops:$GITHUB_SHA
+       cd kustomize/
+       kustomize edit set image $DOCKER_USER/currency-exporter:$GITHUB_SHA
        cat kustomization.yaml
 
     - name: Commit files
