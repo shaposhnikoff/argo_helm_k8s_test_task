@@ -55,6 +55,11 @@ jobs:
       run: | 
          ./yq -i '.image.tag="${{ steps.prep.outputs.tag }}"' helm/currency-exporter/values.yaml
 
+    - name: Update ARGO App values file with tag version
+      run: | 
+         ./yq e -i '.spec.source.helm.values |= (from_yaml | .image.tag = "${{ steps.prep.outputs.tag }}" | to_yaml)' argo_apps/dev_app.yaml
+
+
     - name: Commit files
       run: |
         git config --local user.email "action@github.com"
