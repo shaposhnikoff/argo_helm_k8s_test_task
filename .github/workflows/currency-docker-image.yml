@@ -43,18 +43,14 @@ jobs:
     - name: Image digest
       run: echo ${{ steps.docker_build.outputs.digest }}
 
+    - name: Setup yq
+      run: | 
+        wget https://github.com/mikefarah/yq/releases/download/v4.40.5/yq_linux_amd64 -O /usr/bin/yq
+        chmod +x /usr/bin/yq
 
-    - name: Setup Kustomize
-      uses: imranismail/setup-kustomize@v2
-      with:
-        kustomize-version: "*"
-    - name: Update Kubernetes resources
-      env:
-        DOCKER_USERNAME: ${{ secrets.DOCKER_USER }}
-      run: |
-       cd kustomize/
-       kustomize edit set image shaposhnikov/currency-exporter:$GITHUB_SHA
-       cat kustomization.yaml
+    - name: Update helm values file with tag version
+      run: | 
+         yq -i '.image.tag = "latest"' helm/currency-exporter/values.yaml
 
     - name: Commit files
       run: |
