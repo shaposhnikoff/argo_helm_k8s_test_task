@@ -34,12 +34,29 @@ jobs:
       run: echo ${{ steps.docker_build.outputs.digest }}
 
 
-  identity-job:
-   ./kustomize edit set image gcr.io/PROJECT_ID/IMAGE:TAG=gcr.io/$PROJECT_ID/$IDSIMAGE:$GITHUB_SHA
-   ./kustomize build . | kubectl apply -f -
+    - name: Setup Kustomize
+      uses: imranismail/setup-kustomize@v1
+      with:
+        kustomize-version: "3.6.1"
+    - name: Update Kubernetes resources
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USER }}
+      run: |
+       cd kustomize/base
+       kustomize edit set image hello-gitops=$DOCKER_USERNAME/hello-gitops:$GITHUB_SHA
+       cat kustomization.yaml
 
-   api-job:
-   ...                                                                        
-   ./kustomize edit set image gcr.io/PROJECT_ID/IMAGE:TAG=gcr.io/$PROJECT_ID/$APIIMAGE:$GITHUB_SHA
-   ./kustomize build . | kubectl apply -f -
+    - name: Commit files
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git commit -am "Bump docker tag"
+
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+
+
+
 
