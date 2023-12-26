@@ -6,6 +6,3 @@ CMD ["python", "/currency.py"]
 
 
 
-
-
-
