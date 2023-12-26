@@ -19,12 +19,12 @@ spec:
   source:
     repoURL: 'https://github.com/shaposhnikoff/argo_helm_k8s_test_task.git'
     path: helm/currency-exporter
-    targetRevision: HEAD    
+    targetRevision: HEAD
     helm:
       values: |-
         image:
           repository: shaposhnikoff/currency-exporter
-          tag: latest
+          tag: aef662b
         serviceMonitor:
           enabled: true
           labels:
@@ -46,5 +46,3 @@ spec:
             value: "arn:aws:iam::1234512345:role/data-dev-ec2"
           - name: DRAIF_ROLE_ARN
             value: "arn:aws:iam::1234512345:role/data-dev-ec2"
-
-
