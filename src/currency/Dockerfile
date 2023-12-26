@@ -5,7 +5,3 @@ EXPOSE 8000
 CMD ["python", "/currency.py"]
 
 
-
-
-
-
